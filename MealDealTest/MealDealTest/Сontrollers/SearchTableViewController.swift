@@ -9,15 +9,31 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
-        
+    @IBOutlet weak var SearchTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        SearchTableView.addGestureRecognizer(tapGR)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     // MARK: - Table view data source
@@ -86,5 +102,14 @@ class SearchTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+   
+    @objc private func keyboardWasHidden(notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        
+        SearchTableView.contentInset = contentInsets
+    }
     
+    @objc private func hideKeyboard() {
+        SearchTableView.endEditing(true)
+    }
 }
