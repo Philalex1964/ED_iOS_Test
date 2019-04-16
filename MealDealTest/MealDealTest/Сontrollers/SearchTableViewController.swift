@@ -11,12 +11,16 @@ import UIKit
 class SearchTableViewController: UITableViewController {
     
     @IBOutlet weak var searchTableView: UITableView!
+    var searchController: UISearchController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         searchTableView.addGestureRecognizer(tapGR)
+        
+        searchController = UISearchController.init(searchResultsController: nil)
+        searchTableView.tableHeaderView = searchController?.searchBar
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
