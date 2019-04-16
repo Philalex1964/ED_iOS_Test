@@ -9,13 +9,14 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
-    @IBOutlet weak var SearchTableView: UITableView!
+    
+    @IBOutlet weak var searchTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        SearchTableView.addGestureRecognizer(tapGR)
+        searchTableView.addGestureRecognizer(tapGR)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -106,10 +107,10 @@ class SearchTableViewController: UITableViewController {
     @objc private func keyboardWasHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         
-        SearchTableView.contentInset = contentInsets
+        searchTableView.contentInset = contentInsets
     }
     
     @objc private func hideKeyboard() {
-        SearchTableView.endEditing(true)
+        searchTableView.endEditing(true)
     }
 }
