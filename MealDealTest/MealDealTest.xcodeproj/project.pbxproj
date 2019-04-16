@@ -12,11 +12,12 @@
 		2C0944492265DDFF0070CF6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0944472265DDFF0070CF6A /* Main.storyboard */; };
 		2C09444E2265DE040070CF6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C09444C2265DE040070CF6A /* LaunchScreen.storyboard */; };
 		2C47104F2265F7E7008CA428 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47104D2265F7E7008CA428 /* MainTabBarController.swift */; };
-		2C4710502265F7E7008CA428 /* MainTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C47104E2265F7E7008CA428 /* MainTabBarController.xib */; };
 		2C4710552265F8CE008CA428 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4710532265F8CE008CA428 /* SearchTableViewController.swift */; };
 		2C47105B2265F988008CA428 /* PurchaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4710592265F988008CA428 /* PurchaseTableViewController.swift */; };
 		2C47105D22661C33008CA428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C09444A2265DE040070CF6A /* Assets.xcassets */; };
 		2C47105F22663788008CA428 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47105E22663788008CA428 /* Item.swift */; };
+		2C47106722667914008CA428 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47106622667914008CA428 /* ItemCell.swift */; };
+		2C47106A2266A465008CA428 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4710692266A464008CA428 /* PurchaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +29,11 @@
 		2C09444D2265DE040070CF6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C09444F2265DE040070CF6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C47104D2265F7E7008CA428 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		2C47104E2265F7E7008CA428 /* MainTabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTabBarController.xib; sourceTree = "<group>"; };
 		2C4710532265F8CE008CA428 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		2C4710592265F988008CA428 /* PurchaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTableViewController.swift; sourceTree = "<group>"; };
 		2C47105E22663788008CA428 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		2C47106622667914008CA428 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		2C4710692266A464008CA428 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				2C0944452265DDFF0070CF6A /* ViewController.swift */,
+				2C4710682266791B008CA428 /* Cells */,
 				2C47104D2265F7E7008CA428 /* MainTabBarController.swift */,
 				2C4710532265F8CE008CA428 /* SearchTableViewController.swift */,
 				2C4710592265F988008CA428 /* PurchaseTableViewController.swift */,
@@ -87,7 +90,6 @@
 		2C4710522265F88C008CA428 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2C47104E2265F7E7008CA428 /* MainTabBarController.xib */,
 				2C0944472265DDFF0070CF6A /* Main.storyboard */,
 				2C09444C2265DE040070CF6A /* LaunchScreen.storyboard */,
 				2C09444A2265DE040070CF6A /* Assets.xcassets */,
@@ -101,6 +103,16 @@
 				2C47105E22663788008CA428 /* Item.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2C4710682266791B008CA428 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2C47106622667914008CA428 /* ItemCell.swift */,
+				2C4710692266A464008CA428 /* PurchaseCell.swift */,
+			);
+			name = Cells;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,7 +174,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C09444E2265DE040070CF6A /* LaunchScreen.storyboard in Resources */,
-				2C4710502265F7E7008CA428 /* MainTabBarController.xib in Resources */,
 				2C47105D22661C33008CA428 /* Assets.xcassets in Resources */,
 				2C0944492265DDFF0070CF6A /* Main.storyboard in Resources */,
 			);
@@ -175,10 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C47106A2266A465008CA428 /* PurchaseCell.swift in Sources */,
 				2C0944462265DDFF0070CF6A /* ViewController.swift in Sources */,
 				2C0944442265DDFF0070CF6A /* AppDelegate.swift in Sources */,
 				2C47105B2265F988008CA428 /* PurchaseTableViewController.swift in Sources */,
 				2C47104F2265F7E7008CA428 /* MainTabBarController.swift in Sources */,
+				2C47106722667914008CA428 /* ItemCell.swift in Sources */,
 				2C47105F22663788008CA428 /* Item.swift in Sources */,
 				2C4710552265F8CE008CA428 /* SearchTableViewController.swift in Sources */,
 			);
