@@ -70,7 +70,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Поиск" id="ljA-J8-meA"/>
                     <connections>
-                        <outlet property="SearchTableView" destination="0X9-0e-zMX" id="tWz-sX-3Z8"/>
+                        <outlet property="searchTableView" destination="0X9-0e-zMX" id="aja-1R-pwA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXy-do-dqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
