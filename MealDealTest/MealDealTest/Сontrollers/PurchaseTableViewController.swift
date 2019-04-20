@@ -12,6 +12,12 @@ class PurchaseTableViewController: UITableViewController {
         
     @IBOutlet weak var purchaseTableView: UITableView!
     
+    public var items: [Item] = [
+        Item(description: "Соки Сады Придонья", price: 69.99, discount: 25, itemImageName: "Сады Придонья", retailer: "Metro"),
+        Item(description: "Кока-Кола", price: 49.99, discount: 15, itemImageName: "Кока-Кола", retailer: "Ашан"),
+        Item(description: "Grant's, 0,7l", price: 1999.99, discount: 10, itemImageName: "Grant's", retailer: "G5")
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,7 +85,7 @@ class PurchaseTableViewController: UITableViewController {
     }
     */
 
-    /*
+ 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -87,6 +93,8 @@ class PurchaseTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
+    
+    
     
 }

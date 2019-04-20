@@ -177,8 +177,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-PP-Nlt">
-                                            <rect key="frame" x="12" y="10.5" width="222" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-PP-Nlt" userLabel="descriptionLabel">
+                                            <rect key="frame" x="12" y="10" width="222" height="50"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="DZW-gw-4Di"/>
@@ -188,7 +188,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SxU-Oz-OpS">
-                                            <rect key="frame" x="244" y="10.5" width="70" height="70"/>
+                                            <rect key="frame" x="244" y="10" width="70" height="70"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="0.81418340773809517" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -197,8 +197,8 @@
                                                 <constraint firstAttribute="width" secondItem="SxU-Oz-OpS" secondAttribute="height" multiplier="1:1" id="zYk-Du-ptm"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Retailer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfj-bO-404">
-                                            <rect key="frame" x="12" y="65.5" width="222" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Retailer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfj-bO-404" userLabel="retailerLabel">
+                                            <rect key="frame" x="12" y="65" width="222" height="40"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="0jF-g2-hcR"/>
@@ -207,8 +207,8 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxt-r5-fCY">
-                                            <rect key="frame" x="12" y="115.5" width="111" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxt-r5-fCY" userLabel="priceLabel">
+                                            <rect key="frame" x="12" y="115" width="111" height="40"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="Ghg-97-sFt"/>
@@ -217,8 +217,8 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xn-3S-K8I">
-                                            <rect key="frame" x="143" y="115.5" width="91" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Discount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xn-3S-K8I">
+                                            <rect key="frame" x="143" y="115" width="91" height="40"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="yQU-b5-SJN"/>
@@ -228,7 +228,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCd-18-LBy" userLabel="AddToCartButton">
-                                            <rect key="frame" x="249" y="95.5" width="60" height="60"/>
+                                            <rect key="frame" x="249" y="95" width="60" height="60"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
@@ -246,7 +246,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yf-ae-4XR">
-                                            <rect key="frame" x="12" y="163.5" width="308" height="2"/>
+                                            <rect key="frame" x="12" y="163" width="308" height="2"/>
                                             <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="2" id="pbn-58-YMI"/>
@@ -282,6 +282,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="nqn-PP-Nlt" id="oms-Bu-vJX"/>
+                                    <outlet property="discountLabel" destination="0Xn-3S-K8I" id="6zI-0S-2q9"/>
+                                    <outlet property="itemImage" destination="SxU-Oz-OpS" id="7VS-6x-1sj"/>
+                                    <outlet property="priceLabel" destination="bxt-r5-fCY" id="OZh-Ni-rxz"/>
+                                    <outlet property="retailerLabel" destination="zfj-bO-404" id="27U-Wt-Nsf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <variation key="widthClass=compact">

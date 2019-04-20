@@ -10,8 +10,16 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     
-
+    
     @IBOutlet weak var searchTableView: UITableView!
+    
+    
+    
+    public var items: [Item] = [
+        Item(description: "Соки Сады Придонья", price: 69.99, discount: 25, itemImageName: "10", retailer: "Metro"),
+        Item(description: "Кока-Кола", price: 49.99, discount: 15, itemImageName: "20", retailer: "Ашан"),
+        Item(description: "Grant's", price: 1999.99, discount: 10, itemImageName: "30", retailer: "G5")
+    ]
     
 
     override func viewDidLoad() {
@@ -47,15 +55,20 @@ class SearchTableViewController: UITableViewController {
 //    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
+        return items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
 
-        // Configure the cell...
-
+        cell.descriptionLabel.text = items[indexPath.row].description
+        cell.itemImage.image = UIImage(named: items[indexPath.row].itemImageName!)
+        cell.retailerLabel.text = items[indexPath.row].retailer
+        //cell.priceLabel.text = items[indexPath.row].price
+        //cell.discountLabel.text = items[indexPath.row].discount
+        cell.priceLabel.text = "\(items[indexPath.row].price)"
+        cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
+        
         return cell
     }
  

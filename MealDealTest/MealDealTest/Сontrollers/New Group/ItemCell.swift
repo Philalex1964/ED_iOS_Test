@@ -12,6 +12,12 @@ class ItemCell: UITableViewCell {
 
     static let reuseId = "ItemCell"
     
+    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var retailerLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

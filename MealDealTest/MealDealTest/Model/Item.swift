@@ -12,6 +12,6 @@ struct Item {
     let description: String
     let price: Decimal
     let discount: Int
-    var image: String
-    var retailer: String
+    var itemImageName: String?
+    var retailer: String?
 }
