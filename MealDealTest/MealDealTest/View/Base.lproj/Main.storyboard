@@ -265,7 +265,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <segue destination="fdz-6s-IZv" kind="show" identifier="addToCartSegue" id="ijA-5F-rbS"/>
+                                                <segue destination="S4Y-MN-QUX" kind="unwind" identifier="addToCartSeague" unwindAction="addToCartWithSegue:" id="bYq-xv-5tF"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -318,6 +318,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXy-do-dqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="S4Y-MN-QUX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1907" y="-688"/>
         </scene>
@@ -389,7 +390,4 @@
         <image name="bin30" width="30" height="30"/>
         <image name="shopping-cart" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ijA-5F-rbS"/>
-    </inferredMetricsTieBreakers>
 </document>

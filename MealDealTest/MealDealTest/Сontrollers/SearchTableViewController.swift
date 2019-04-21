@@ -127,3 +127,7 @@ class SearchTableViewController: UITableViewController {
         searchTableView.endEditing(true)
     }
 }
+
+//extension SearchTableViewController: UITableViewDelegate {
+    
+//}

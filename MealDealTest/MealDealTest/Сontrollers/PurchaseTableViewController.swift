@@ -91,7 +91,7 @@ class PurchaseTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for addToCartSeague: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
@@ -106,9 +106,10 @@ class PurchaseTableViewController: UITableViewController {
                 return item.description == newItem.description
             }) else { return }
             items.append(newItem)
-            //tableView.reloadData()
+            tableView.reloadData()
             let newIndexPath = IndexPath(item: items.count-1, section: 0)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
     }
 }
+
