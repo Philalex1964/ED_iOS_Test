@@ -10,7 +10,6 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     
-    
     @IBOutlet weak var searchTableView: UITableView!
     
     
@@ -114,7 +113,9 @@ class SearchTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+     */
+    
+    
    
     @objc private func keyboardWasHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
