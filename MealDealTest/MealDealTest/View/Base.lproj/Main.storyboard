@@ -27,10 +27,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wup-Wk-mvJ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wup-Wk-mvJ" userLabel="Purchase Description Label">
                                             <rect key="frame" x="12" y="10" width="222" height="50"/>
                                             <color key="backgroundColor" white="0.81418340773809517" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="f33-jJ-2wy"/>
                                             </constraints>
@@ -134,6 +137,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="purchaseDescriptionLabel" destination="Wup-Wk-mvJ" id="LhP-o6-Ag3"/>
+                                    <outlet property="purchaseDiscountLabel" destination="4y3-Z4-DBa" id="Z92-HK-czZ"/>
+                                    <outlet property="purchaseItemImage" destination="LCz-S2-oFF" id="xb0-hl-sAg"/>
+                                    <outlet property="purchasePriceLabel" destination="3uB-CA-ggh" id="K95-XB-Loa"/>
+                                    <outlet property="purchaseRetailerLabel" destination="ilb-HN-GQZ" id="3cs-5U-WmC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <variation key="heightClass=regular-widthClass=regular">

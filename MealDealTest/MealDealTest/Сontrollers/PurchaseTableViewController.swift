@@ -13,9 +13,7 @@ class PurchaseTableViewController: UITableViewController {
     @IBOutlet weak var purchaseTableView: UITableView!
     
     public var items: [Item] = [
-        Item(description: "Соки Сады Придонья", price: 69.99, discount: 25, itemImageName: "Сады Придонья", retailer: "Metro"),
-        Item(description: "Кока-Кола", price: 49.99, discount: 15, itemImageName: "Кока-Кола", retailer: "Ашан"),
-        Item(description: "Grant's, 0,7l", price: 1999.99, discount: 10, itemImageName: "Grant's", retailer: "G5")
+        Item(description: "Молоко Простоквашино", price: 49.99, discount: 15, itemImageName: "40", retailer: "Лента"),
     ]
     
     override func viewDidLoad() {
@@ -37,14 +35,18 @@ class PurchaseTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return items.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseCell.reuseId, for: indexPath) as? PurchaseCell else { fatalError("Cell cannot be dequeued")}
 
-        // Configure the cell...
+        cell.purchaseDescriptionLabel.text = items[indexPath.row].description
+        cell.purchaseItemImage.image = UIImage(named: items[indexPath.row].itemImageName!)
+        cell.purchaseRetailerLabel.text = items[indexPath.row].retailer
+        cell.purchasePriceLabel.text = "\(items[indexPath.row].price)"
+        cell.purchaseDiscountLabel.text = String(format:"%d", items[indexPath.row].discount)
 
         return cell
     }

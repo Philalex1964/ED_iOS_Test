@@ -64,8 +64,6 @@ class SearchTableViewController: UITableViewController {
         cell.descriptionLabel.text = items[indexPath.row].description
         cell.itemImage.image = UIImage(named: items[indexPath.row].itemImageName!)
         cell.retailerLabel.text = items[indexPath.row].retailer
-        //cell.priceLabel.text = items[indexPath.row].price
-        //cell.discountLabel.text = items[indexPath.row].discount
         cell.priceLabel.text = "\(items[indexPath.row].price)"
         cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
         

@@ -9,8 +9,15 @@
 import UIKit
 
 class PurchaseCell: UITableViewCell {
-
+    
     static let reuseId = "PurchaseCell"
+    
+
+    @IBOutlet weak var purchaseDescriptionLabel: UILabel!
+    @IBOutlet weak var purchaseItemImage: UIImageView!
+    @IBOutlet weak var purchaseRetailerLabel: UILabel!
+    @IBOutlet weak var purchasePriceLabel: UILabel!
+    @IBOutlet weak var purchaseDiscountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
