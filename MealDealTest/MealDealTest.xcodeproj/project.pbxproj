@@ -18,6 +18,7 @@
 		2C47105F22663788008CA428 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47105E22663788008CA428 /* Item.swift */; };
 		2C47106722667914008CA428 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47106622667914008CA428 /* ItemCell.swift */; };
 		2C47106A2266A465008CA428 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4710692266A464008CA428 /* PurchaseCell.swift */; };
+		2CA052D2226DF94C00FC48C6 /* ItemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CA052D0226DF94C00FC48C6 /* ItemModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2C47105E22663788008CA428 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2C47106622667914008CA428 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		2C4710692266A464008CA428 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
+		2CA052D1226DF94C00FC48C6 /* ItemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		2C47106022663799008CA428 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2CA052D0226DF94C00FC48C6 /* ItemModel.xcdatamodeld */,
 				2C47105E22663788008CA428 /* Item.swift */,
 			);
 			path = Model;
@@ -189,6 +192,7 @@
 				2C47106A2266A465008CA428 /* PurchaseCell.swift in Sources */,
 				2C0944462265DDFF0070CF6A /* ViewController.swift in Sources */,
 				2C0944442265DDFF0070CF6A /* AppDelegate.swift in Sources */,
+				2CA052D2226DF94C00FC48C6 /* ItemModel.xcdatamodeld in Sources */,
 				2C47105B2265F988008CA428 /* PurchaseTableViewController.swift in Sources */,
 				2C47104F2265F7E7008CA428 /* MainTabBarController.swift in Sources */,
 				2C47106722667914008CA428 /* ItemCell.swift in Sources */,
@@ -342,7 +346,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K44PL886SA;
 				INFOPLIST_FILE = MealDealTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -361,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K44PL886SA;
 				INFOPLIST_FILE = MealDealTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -395,6 +399,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2CA052D0226DF94C00FC48C6 /* ItemModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2CA052D1226DF94C00FC48C6 /* ItemModel.xcdatamodel */,
+			);
+			currentVersion = 2CA052D1226DF94C00FC48C6 /* ItemModel.xcdatamodel */;
+			path = ItemModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2C0944382265DDFF0070CF6A /* Project object */;
 }
