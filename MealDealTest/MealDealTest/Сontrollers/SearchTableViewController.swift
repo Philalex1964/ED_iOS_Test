@@ -17,7 +17,15 @@ class SearchTableViewController: UITableViewController {
     
     public var items: [ItemMO] = []
     
-    let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+    
+    
+    
+    
+//    restaurant = RestaurantModel(context:
+//    appDelegate.persistentContainer.viewContext)
+//    restaurant.name = "Upstate"
+//    restaurant.type = "Cafe"
+//    restaurant.location = "New York"
    
 
     
