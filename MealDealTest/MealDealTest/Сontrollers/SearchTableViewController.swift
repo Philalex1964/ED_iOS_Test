@@ -15,7 +15,9 @@ class SearchTableViewController: UITableViewController {
     
     var item: ItemMO!
     
-    public var items: [ItemMO] = []
+    public var items: [ItemMO] = [
+    
+    ]
     
     
     
@@ -41,6 +43,17 @@ class SearchTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let request: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
+            let context = appDelegate.persistentContainer.viewContext
+            do {
+                items = try context.fetch(request)
+                //items.append(item)
+            } catch {
+                print(error)
+            }
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
@@ -60,7 +73,7 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
 
-        cell.descriptionLabel.text = items[indexPath.row].description
+        cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
         cell.itemImage.image = UIImage(named: items[indexPath.row].imageName!)
         cell.retailerLabel.text = items[indexPath.row].retailer
         cell.priceLabel.text = "\(items[indexPath.row].price)"

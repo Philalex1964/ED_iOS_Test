@@ -187,7 +187,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-PP-Nlt" userLabel="descriptionLabel">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-PP-Nlt" userLabel="itemDescriptionLabel">
                                             <rect key="frame" x="12" y="10" width="222" height="50"/>
                                             <color key="backgroundColor" white="0.81418340769999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -296,8 +296,8 @@
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="nqn-PP-Nlt" id="oms-Bu-vJX"/>
                                     <outlet property="discountLabel" destination="0Xn-3S-K8I" id="6zI-0S-2q9"/>
+                                    <outlet property="itemDescriptionLabel" destination="nqn-PP-Nlt" id="tDK-Zb-t1z"/>
                                     <outlet property="itemImage" destination="SxU-Oz-OpS" id="7VS-6x-1sj"/>
                                     <outlet property="priceLabel" destination="bxt-r5-fCY" id="OZh-Ni-rxz"/>
                                     <outlet property="retailerLabel" destination="zfj-bO-404" id="27U-Wt-Nsf"/>
