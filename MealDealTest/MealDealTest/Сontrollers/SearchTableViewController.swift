@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class SearchTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
-    
-    
+class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate  {
     
     @IBOutlet weak var searchTableView: UITableView!
+    
+    @IBOutlet weak var SearchBar: UISearchBar!
     
     var item: ItemMO!
     
@@ -21,8 +21,8 @@ class SearchTableViewController: UITableViewController, NSFetchedResultsControll
     
     public var items: [ItemMO] = []
 
-    func updateSearchResults(for searchController: UISearchController) {
-    }
+    var searchItems = [ItemMO]()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,20 +65,35 @@ class SearchTableViewController: UITableViewController, NSFetchedResultsControll
     }
 
     // MARK: - Table view data source
+    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        if searching {
+//            return 1
+//        }
+//        return 1
+//    }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        if searching {
+            return searchItems.count
+        } else {
+            return items.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
+        if searching {
+            cell.itemDescriptionLabel.text = searchItems[indexPath.row].itemDescription
+        } else {
 
         cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
         cell.itemImage.image = UIImage(named: items[indexPath.row].imageName!)
         cell.retailerLabel.text = items[indexPath.row].retailer
         cell.priceLabel.text = "\(items[indexPath.row].price)"
         cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
-        
+        }
         return cell
     }
     
@@ -99,4 +114,16 @@ class SearchTableViewController: UITableViewController, NSFetchedResultsControll
     @objc private func hideKeyboard() {
         searchTableView.endEditing(true)
     }
+    
+    func searchBar (_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchItems = items.filter({$0.itemDescription!.prefix(searchText.count) == searchText})
+        searching = true
+        tableView.reloadData()
+        
+        //searchItems.removeAll()
+        
+    }
 }
+
+
+
