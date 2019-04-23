@@ -12,7 +12,6 @@ class PurchaseCell: UITableViewCell {
     
     static let reuseId = "PurchaseCell"
     
-
     @IBOutlet weak var purchaseDescriptionLabel: UILabel!
     @IBOutlet weak var purchaseItemImage: UIImageView!
     @IBOutlet weak var purchaseRetailerLabel: UILabel!
@@ -21,13 +20,6 @@ class PurchaseCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
 }

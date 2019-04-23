@@ -29,7 +29,6 @@ class PurchaseTableViewController: UITableViewController {
         return items.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseCell.reuseId, for: indexPath) as? PurchaseCell else { fatalError("Cell cannot be dequeued")}
 
@@ -42,15 +41,11 @@ class PurchaseTableViewController: UITableViewController {
         return cell
     }
   
-
-    
- 
     // MARK: - Navigation
 
     override func prepare(for addToCartSeague: UIStoryboardSegue, sender: Any?) {
  
     }
-    
     
     @IBAction func addToCart(segue: UIStoryboardSegue) {
         if let searchTableViewController = segue.source as? SearchTableViewController,

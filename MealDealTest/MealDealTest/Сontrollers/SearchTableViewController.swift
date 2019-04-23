@@ -9,31 +9,43 @@
 import UIKit
 import CoreData
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating {
+    
+    
     
     @IBOutlet weak var searchTableView: UITableView!
     
     var item: ItemMO!
     
-    public var items: [ItemMO] = [
+    var fetchResultController: NSFetchedResultsController<ItemMO>!
     
-    ]
-    
-    
-    
-    
-    
-//    restaurant = RestaurantModel(context:
-//    appDelegate.persistentContainer.viewContext)
-//    restaurant.name = "Upstate"
-//    restaurant.type = "Cafe"
-//    restaurant.location = "New York"
-   
+    public var items: [ItemMO] = []
 
+    func updateSearchResults(for searchController: UISearchController) {
+    }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //MARK: - Fetch data from data store
+        let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "itemDescription", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            fetchResultController = NSFetchedResultsController(fetchRequest:
+                fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil,
+                              cacheName: nil)
+            fetchResultController.delegate = self
+            do {
+                try fetchResultController.performFetch()
+                if let fetchedObjects = fetchResultController.fetchedObjects {
+                    items = fetchedObjects
+                }
+            } catch {
+                print(error)
+            }
+        }
 
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         searchTableView.addGestureRecognizer(tapGR)
@@ -42,17 +54,6 @@ class SearchTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-            let request: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
-            let context = appDelegate.persistentContainer.viewContext
-            do {
-                items = try context.fetch(request)
-                //items.append(item)
-            } catch {
-                print(error)
-            }
-        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -64,7 +65,6 @@ class SearchTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -81,9 +81,7 @@ class SearchTableViewController: UITableViewController {
         
         return cell
     }
- 
-
-   
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -92,9 +90,6 @@ class SearchTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
  
-    
-    
-   
     @objc private func keyboardWasHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         
@@ -105,7 +100,3 @@ class SearchTableViewController: UITableViewController {
         searchTableView.endEditing(true)
     }
 }
-
-//extension SearchTableViewController: UITableViewDelegate {
-    
-//}
