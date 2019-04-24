@@ -13,7 +13,8 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     
     @IBOutlet weak var searchTableView: UITableView!
     
-    @IBOutlet weak var SearchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     var item: ItemMO!
     
@@ -49,6 +50,8 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
 
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         searchTableView.addGestureRecognizer(tapGR)
+        
+        searchTableView.tableHeaderView = searchBar
         
     }
     
@@ -86,6 +89,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
         if searching {
             cell.itemDescriptionLabel.text = searchItems[indexPath.row].itemDescription
+            cell.itemImage.image = UIImage(named: items[indexPath.row].imageName!)
+            cell.retailerLabel.text = items[indexPath.row].retailer
+            cell.priceLabel.text = "\(items[indexPath.row].price)"
+            cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
+            
         } else {
 
         cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
@@ -100,9 +108,17 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let button : UIButton = sender as! UIButton
+        let cell : UITableViewCell = button.superview?.superview as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        guard let index = indexPath?.row else { return }
+        let item = items[index]
+        
+        let purchaseVC = segue.destination as! PurchaseTableViewController
+        purchaseVC.item = item
+
     }
  
     @objc private func keyboardWasHidden(notification: Notification) {

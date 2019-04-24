@@ -178,6 +178,9 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <offsetWrapper key="searchTextPositionAdjustment" horizontal="18" vertical="0.0"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="tW1-jC-gSS" id="GcO-UR-Ybl"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="152" id="elm-QD-o6B" customClass="ItemCell" customModule="MealDealTest" customModuleProvider="target">
@@ -314,7 +317,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Поиск" id="ljA-J8-meA"/>
                     <connections>
-                        <outlet property="SearchBar" destination="x2E-aW-rgH" id="hmx-qC-S4F"/>
+                        <outlet property="searchBar" destination="x2E-aW-rgH" id="RdQ-x3-nJQ"/>
                         <outlet property="searchTableView" destination="0X9-0e-zMX" id="aja-1R-pwA"/>
                     </connections>
                 </tableViewController>
