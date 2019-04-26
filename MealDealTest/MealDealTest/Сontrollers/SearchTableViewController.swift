@@ -68,14 +68,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
 
     // MARK: - Table view data source
-    
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        if searching {
-//            return 1
-//        }
-//        return 1
-//    }
-    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
@@ -89,10 +81,10 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
         if searching {
             cell.itemDescriptionLabel.text = searchItems[indexPath.row].itemDescription
-            cell.itemImage.image = UIImage(named: items[indexPath.row].imageName!)
-            cell.retailerLabel.text = items[indexPath.row].retailer
-            cell.priceLabel.text = "\(items[indexPath.row].price)"
-            cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
+            cell.itemImage.image = UIImage(named: searchItems[indexPath.row].imageName!)
+            cell.retailerLabel.text = searchItems[indexPath.row].retailer
+            cell.priceLabel.text = "\(searchItems[indexPath.row].price)"
+            cell.discountLabel.text = String(format:"%d", searchItems[indexPath.row].discount)
             
         } else {
 
@@ -107,8 +99,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let button : UIButton = sender as! UIButton
         let cell : UITableViewCell = button.superview?.superview as! UITableViewCell
@@ -132,12 +122,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
     
     func searchBar (_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchItems = items.filter({$0.itemDescription!.prefix(searchText.count) == searchText})
+        searchItems = items.filter({$0.itemDescription!.lowercased().prefix(searchText.count) == searchText.lowercased()})
         searching = true
         tableView.reloadData()
         
         //searchItems.removeAll()
-        
     }
 }
 
