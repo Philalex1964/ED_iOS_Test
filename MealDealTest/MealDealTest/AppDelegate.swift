@@ -16,14 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let item = ItemMO(context: self.persistentContainer.viewContext)
-        item.itemDescription = "Молоко Простоквашино"
-        item.retailer = "Лента"
-        item.price = 49.99
-        item.discount = 15
-        item.imageName = "40"
-
-        saveContext()
+//        let item = ItemMO(context: self.persistentContainer.viewContext)
+//        item.itemDescription = "Кока-Кола"
+//        item.retailer = "Ашан"
+//        item.price = 59.99
+//        item.discount = 20
+//        item.imageName = "20"
+//
+//        saveContext()
+        
+        ApiClient().getItems()
 
         return true
     }

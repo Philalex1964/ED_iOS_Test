@@ -19,6 +19,7 @@
 		2C47105F22663788008CA428 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47105E22663788008CA428 /* Item.swift */; };
 		2C47106722667914008CA428 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C47106622667914008CA428 /* ItemCell.swift */; };
 		2C47106A2266A465008CA428 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4710692266A464008CA428 /* PurchaseCell.swift */; };
+		2C833DC522A08813004849F1 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C833DC422A08813004849F1 /* ApiClient.swift */; };
 		2CA052D5226E770600FC48C6 /* ItemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CA052D3226E770600FC48C6 /* ItemModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		2C47105E22663788008CA428 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2C47106622667914008CA428 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		2C4710692266A464008CA428 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
+		2C833DC422A08813004849F1 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		2CA052D4226E770600FC48C6 /* ItemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemModel.xcdatamodel; sourceTree = "<group>"; };
 		5343F2666846570B55618255 /* Pods-MealDealTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDealTest.debug.xcconfig"; path = "Target Support Files/Pods-MealDealTest/Pods-MealDealTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E12777EC5A468084D4C8C163 /* Pods_MealDealTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDealTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 		2C833DC322A079E9004849F1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				2C833DC422A08813004849F1 /* ApiClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				2C47106722667914008CA428 /* ItemCell.swift in Sources */,
 				2C47105F22663788008CA428 /* Item.swift in Sources */,
 				2C4710552265F8CE008CA428 /* SearchTableViewController.swift in Sources */,
+				2C833DC522A08813004849F1 /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

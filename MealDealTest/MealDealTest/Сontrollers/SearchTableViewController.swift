@@ -13,7 +13,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     
     @IBOutlet weak var searchTableView: UITableView!
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
     
     
     var item: ItemMO!
@@ -46,6 +50,8 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             } catch {
                 print(error)
             }
+            
+            
         }
 
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
