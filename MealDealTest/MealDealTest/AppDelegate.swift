@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        let item = ItemMO(context: self.persistentContainer.viewContext)
-//        item.itemDescription = "Grant's"
-//        item.retailer = "G5"
-//        item.price = 1999.99
-//        item.discount = 10
-//        item.imageName = "30"
-//
-//        saveContext()
+        let item = ItemMO(context: self.persistentContainer.viewContext)
+        item.itemDescription = "Молоко Простоквашино"
+        item.retailer = "Лента"
+        item.price = 49.99
+        item.discount = 15
+        item.imageName = "40"
+
+        saveContext()
 
         return true
     }
@@ -78,8 +78,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-    
-
 }
 
