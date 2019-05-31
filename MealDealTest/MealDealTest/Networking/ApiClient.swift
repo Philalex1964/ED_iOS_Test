@@ -9,18 +9,16 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import CoreData
 
 class ApiClient {
+    
+    
+    
     public func getItems(completion: ((Swift.Result<[Item], Error>) -> Void)? = nil) {
         let baseUrl = "https://api.edadev.ru"
         let path = "/intern/"
-        
-//        let params: Parameters = [
-//            "access_token": token,
-//            "extended": 1,
-//            "v": "5.95",
-//            "fields": "photo_id, photo_50"
-//        ]
+
         
         Alamofire.request(baseUrl + path, method: .get).responseJSON { response in
             switch response.result {

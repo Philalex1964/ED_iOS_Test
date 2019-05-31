@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,17 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
 //        let item = ItemMO(context: self.persistentContainer.viewContext)
+
+//        item.itemDescription = json["description"].stringValue
+//        item.retailer = json["retailer"].stringValue
+//        item.imageURL = json["image"].stringValue
+//        item.price = json["price"].double
+//        item.discount = json["discount"].int16
+        
+        
 //        item.itemDescription = "Кока-Кола"
 //        item.retailer = "Ашан"
 //        item.price = 59.99
 //        item.discount = 20
 //        item.imageName = "20"
-//
+        
 //        saveContext()
         
         ApiClient().getItems()
-
+        
         return true
     }
 
@@ -62,11 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-    
-
-    
-    
-    
+ 
     // MARK: - Core Data Saving support
     
     func saveContext () {

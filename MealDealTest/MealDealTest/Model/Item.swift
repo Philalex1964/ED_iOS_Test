@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 class Item {
-    let description: String
+    let itemDescription: String
     let retailer: String
     let imageURL: String
     let price: Double?
@@ -18,7 +18,7 @@ class Item {
     
     
     init(_ json: JSON) {
-        self.description = json["description"].stringValue
+        self.itemDescription = json["description"].stringValue
         self.retailer = json["retailer"].stringValue
         self.imageURL = json["image"].stringValue
         self.price = json["price"].double
