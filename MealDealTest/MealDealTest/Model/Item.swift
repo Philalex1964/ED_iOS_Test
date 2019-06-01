@@ -9,20 +9,20 @@
 import UIKit
 import SwiftyJSON
 
-class Item {
+class Item: Codable {
     let itemDescription: String
     let retailer: String
     let imageURL: String
-    let price: Double?
-    let discount: Int16?
+    let price: Double
+    let discount: Int16
     
     
     init(_ json: JSON) {
         self.itemDescription = json["description"].stringValue
         self.retailer = json["retailer"].stringValue
         self.imageURL = json["image"].stringValue
-        self.price = json["price"].double
-        self.discount = json["discount"].int16
+        self.price = json["price"].double ?? 0
+        self.discount = json["discount"].int16 ?? 0
         }    
 }
 

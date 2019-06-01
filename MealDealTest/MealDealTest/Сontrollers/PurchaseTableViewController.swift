@@ -33,7 +33,7 @@ class PurchaseTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseCell.reuseId, for: indexPath) as? PurchaseCell else { fatalError("Cell cannot be dequeued")}
 
         cell.purchaseDescriptionLabel.text = items[indexPath.row].description
-        cell.purchaseItemImage.image = UIImage(named: items[indexPath.row].imageName!)
+        cell.purchaseItemImage.image = UIImage(named: items[indexPath.row].imageURL!)
         cell.purchaseRetailerLabel.text = items[indexPath.row].retailer
         cell.purchasePriceLabel.text = "\(items[indexPath.row].price)"
         cell.purchaseDiscountLabel.text = String(format:"%d", items[indexPath.row].discount)

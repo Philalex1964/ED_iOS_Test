@@ -14,11 +14,14 @@ import SwiftyJSON
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-//        let item = ItemMO(context: self.persistentContainer.viewContext)
+        ItemSavingManager().savePlist()
+        ItemSavingManager().insertItemData()
+//       let item = ItemMO(context: self.persistentContainer.viewContext)
 
 //        item.itemDescription = json["description"].stringValue
 //        item.retailer = json["retailer"].stringValue
@@ -31,11 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        item.retailer = "Ашан"
 //        item.price = 59.99
 //        item.discount = 20
-//        item.imageName = "20"
-        
+//        item.imageURL = "20"
+//        
 //        saveContext()
         
-        ApiClient().getItems()
+//        ApiClient().getItems()
+        //ApiClient().saveJsonData()
         
         return true
     }
