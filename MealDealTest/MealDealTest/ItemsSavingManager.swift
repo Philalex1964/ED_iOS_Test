@@ -12,9 +12,9 @@ import CoreData
 
 class ItemSavingManager {
     
-    static let shared = ItemSavingManager()
-    
-    init() {}
+//    static let shared = ItemSavingManager()
+//
+//    init() {}
     
     var items  = [Item]()
     
@@ -70,7 +70,7 @@ class ItemSavingManager {
         guard let dataArray = NSArray(contentsOf: path) else { return }
         
         for dict in dataArray {
-            let entity = NSEntityDescription.entity(forEntityName: "ItemMO", in: context)!
+            let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
             let item = ItemMO(entity: entity,
                                 insertInto: context)
             let itemDict = dict as! [String : Any]

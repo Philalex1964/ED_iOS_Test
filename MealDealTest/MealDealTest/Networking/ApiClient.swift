@@ -12,7 +12,7 @@ import SwiftyJSON
 import CoreData
 
 class ApiClient {
-    lazy var persistentContainer = ShopService().persistentContainer
+//    lazy var persistentContainer = AppDelegate().persistentContainer
 //    lazy var persistentContainer: NSPersistentContainer = {
 //
 //        let container = NSPersistentContainer(name: "ItemModel")
@@ -37,16 +37,16 @@ class ApiClient {
                 completion?(.success(items))
                 //print(json)
                 //print(items[0].itemDescription)
-                let item = ItemMO(context:  self.persistentContainer.viewContext)
-                
-                for _ in items {
-                    item.itemDescription = items[0].itemDescription
-                    item.retailer = items[0].retailer
-                    item.imageURL = items[0].imageURL
-                    item.price = items[0].price
-                    item.discount = items[0].discount
-                }
-                AppDelegate().saveContext()
+//                let item = ItemMO(context:  AppDelegate().persistentContainer.viewContext)
+//                
+//                for _ in items {
+//                    item.itemDescription = items[0].itemDescription
+//                    item.retailer = items[0].retailer
+//                    item.imageURL = items[0].imageURL
+//                    item.price = items[0].price
+//                    item.discount = items[0].discount
+//                }
+//                AppDelegate().saveContext()
                 
 //                self.saveJsonData()
             case .failure(let error):

@@ -15,11 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    // MARK: - Core Data stack
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        
+        let container = NSPersistentContainer(name: "ItemModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
     
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ItemSavingManager().savePlist()
+//        ItemSavingManager().loadFromFile()
         ItemSavingManager().insertItemData()
 //       let item = ItemMO(context: self.persistentContainer.viewContext)
 
@@ -38,8 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        saveContext()
         
-//        ApiClient().getItems()
-        //ApiClient().saveJsonData()
+//        ShopService().getItems()
+//        ApiClient().saveJsonData()
         
         return true
     }
@@ -64,18 +78,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
-    // MARK: - Core Data stack
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-       
-        let container = NSPersistentContainer(name: "ItemModel")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
+//    // MARK: - Core Data stack
+//    
+//    lazy var persistentContainer: NSPersistentContainer = {
+//       
+//        let container = NSPersistentContainer(name: "ItemModel")
+//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
+//            }
+//        })
+//        return container
+//    }()
  
     // MARK: - Core Data Saving support
     

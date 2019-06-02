@@ -12,22 +12,21 @@ import CoreData
 import Alamofire
 
 class ShopService {
-    
+
+//    // MARK: - Core Data stack
 //
+//    lazy var persistentContainer: NSPersistentContainer = {
+//
+//        let container = NSPersistentContainer(name: "ItemModel")
+//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//            if let error = error as NSError? {
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
+//            }
+//        })
+//        return container
+//    }()
     
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        
-        let container = NSPersistentContainer(name: "ItemModel")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    public func fetchAndInsertItems() {
+//    public func fetchAndInsertItems() {
 //        ApiClient().getItems()
 //        let items = [Item]()
 //        let item = ItemMO()
@@ -40,7 +39,7 @@ class ShopService {
 //            item.discount = items[i].discount
 //        }
 //        AppDelegate().saveContext()
-    }
+//    }
     
     public func getItems(completion: ((Swift.Result<[Item], Error>) -> Void)? = nil) {
         let baseUrl = "https://api.edadev.ru"
@@ -51,8 +50,26 @@ class ShopService {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                var items = json.arrayValue.map { Item($0) }
-                completion?(.success(items))
+                let items = json.arrayValue.map { Item($0) } as NSArray
+                completion?(.success(items as! [Item]))
+                
+                for dict in items {
+                    //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let context = AppDelegate().persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
+                    let item = ItemMO(entity: entity,
+                                      insertInto: context)
+                    let itemDict = dict as! [String : Any]
+                    
+                    item.itemDescription = itemDict["itemDescription"] as? String
+                    item.retailer = itemDict["retailer"] as? String
+                    item.imageURL = itemDict["imageURL"] as? String
+                    item.price = itemDict["price"] as? Double ?? 0
+                    item.discount = itemDict["discount"] as? Int16 ?? 0
+                    
+                }
+                AppDelegate().saveContext()
+                
             case .failure(let error):
                 completion?(.failure(error))
                 print(error)
