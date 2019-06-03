@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate  {
     
@@ -87,15 +88,19 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
         if searching {
             cell.itemDescriptionLabel.text = searchItems[indexPath.row].itemDescription
-            cell.itemImage.image = UIImage(named: searchItems[indexPath.row].imageURL!)
+            cell.itemImage.kf.setImage(with: URL(string: items[indexPath.row].imageURL ?? ""))
             cell.retailerLabel.text = searchItems[indexPath.row].retailer
             cell.priceLabel.text = "\(searchItems[indexPath.row].price)"
             cell.discountLabel.text = String(format:"%d", searchItems[indexPath.row].discount)
             
         } else {
 
+//            let item = items[indexPath.row]
+//            cell.configure(with: item)
+//            return cell
+            
         cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
-        cell.itemImage.image = UIImage(named: items[indexPath.row].imageURL!)
+        cell.itemImage.kf.setImage(with: URL(string: items[indexPath.row].imageURL ?? ""))
         cell.retailerLabel.text = items[indexPath.row].retailer
         cell.priceLabel.text = "\(items[indexPath.row].price)"
         cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
@@ -143,6 +148,8 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         tableView.reloadData()
     }
 }
+
+
 
 
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ItemCell: UITableViewCell {
 
@@ -17,6 +18,23 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var retailerLabel: UILabel!
+    
+    public func configure(with item: Item) {
+        let itemDescription = String(item.itemDescription)
+        itemDescriptionLabel.text = itemDescription
+        
+        let retailer = String(item.retailer)
+        retailerLabel.text = retailer
+        
+        let price = String(item.price)
+        priceLabel.text = price
+        
+        let discount = String(item.discount)
+        discountLabel.text = discount
+        
+        let imageUrlString = item.imageURL
+        itemImage.kf.setImage(with: URL(string: imageUrlString))
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
