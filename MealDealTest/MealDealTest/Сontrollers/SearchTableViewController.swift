@@ -134,6 +134,14 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         
         //searchItems.removeAll()
     }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if let fetchedObjects = fetchResultController.fetchedObjects {
+            items = fetchedObjects
+        }
+        searching = false
+        tableView.reloadData()
+    }
 }
 
 

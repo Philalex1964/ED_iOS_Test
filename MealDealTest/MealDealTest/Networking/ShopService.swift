@@ -50,22 +50,22 @@ class ShopService {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                let items = json.arrayValue.map { Item($0) } as NSArray
-                completion?(.success(items as! [Item]))
+                let items = json.arrayValue.map { Item($0) }
+                completion?(.success(items))
                 
-                for dict in items {
-                    //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    let context = AppDelegate().persistentContainer.viewContext
+                for plainItem: Item in items {
+                    let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+                    let context = appDelegate!.persistentContainer.viewContext
                     let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
-                    let item = ItemMO(entity: entity,
+                    let managedItem = ItemMO(entity: entity,
                                       insertInto: context)
-                    let itemDict = dict as! [String : Any]
+                    //let itemDict = dict as! [String : Any]
                     
-                    item.itemDescription = itemDict["itemDescription"] as? String
-                    item.retailer = itemDict["retailer"] as? String
-                    item.imageURL = itemDict["imageURL"] as? String
-                    item.price = itemDict["price"] as? Double ?? 0
-                    item.discount = itemDict["discount"] as? Int16 ?? 0
+                    managedItem.itemDescription = plainItem.itemDescription
+                    managedItem.retailer = plainItem.retailer
+                    managedItem.imageURL = plainItem.imageURL
+                    managedItem.price = plainItem.price
+                    managedItem.discount = plainItem.discount
                     
                 }
                 AppDelegate().saveContext()

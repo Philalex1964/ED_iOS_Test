@@ -32,28 +32,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ItemSavingManager().savePlist()
-//        ItemSavingManager().loadFromFile()
-        ItemSavingManager().insertItemData()
-//       let item = ItemMO(context: self.persistentContainer.viewContext)
-
-//        item.itemDescription = json["description"].stringValue
-//        item.retailer = json["retailer"].stringValue
-//        item.imageURL = json["image"].stringValue
-//        item.price = json["price"].double
-//        item.discount = json["discount"].int16
         
-        
-//        item.itemDescription = "Кока-Кола"
-//        item.retailer = "Ашан"
-//        item.price = 59.99
-//        item.discount = 20
-//        item.imageURL = "20"
-//        
-//        saveContext()
-        
-//        ShopService().getItems()
+        //MARK: - Testing methods
+//        ItemSavingManager().savePlist()
+////        ItemSavingManager().loadFromFile()
+//        ItemSavingManager().insertItemData()
+        ShopService().getItems()
 //        ApiClient().saveJsonData()
+//        ApiClient().getItems()
+        
+//        MARK: - Manual save to CoreData
+//               let item = ItemMO(context: self.persistentContainer.viewContext)
+//                item.itemDescription = "Кока-Кола"
+//                item.retailer = "Ашан"
+//                item.price = 59.99
+//                item.discount = 20
+//                item.imageURL = "20"
+//
+//                saveContext()
         
         return true
     }
