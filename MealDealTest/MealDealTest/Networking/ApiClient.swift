@@ -12,17 +12,8 @@ import SwiftyJSON
 import CoreData
 
 class ApiClient {
-//    lazy var persistentContainer = AppDelegate().persistentContainer
-//    lazy var persistentContainer: NSPersistentContainer = {
-//
-//        let container = NSPersistentContainer(name: "ItemModel")
-//        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-//            if let error = error as NSError? {
-//                fatalError("Unresolved error \(error), \(error.userInfo)")
-//            }
-//        })
-//        return container
-//    }()
+
+    static let shared = ApiClient()
     
     public func getItems(completion: ((Swift.Result<[Item], Error>) -> Void)? = nil) {
         let baseUrl = "https://api.edadev.ru"

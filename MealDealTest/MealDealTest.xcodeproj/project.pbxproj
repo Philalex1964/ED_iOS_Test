@@ -21,7 +21,6 @@
 		2C47106A2266A465008CA428 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4710692266A464008CA428 /* PurchaseCell.swift */; };
 		2C833DC522A08813004849F1 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C833DC422A08813004849F1 /* ApiClient.swift */; };
 		2C89EAF722A1886A0024B072 /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C89EAF622A1886A0024B072 /* ShopService.swift */; };
-		2C98A68D22A1E7FB00AE4C15 /* ItemsSavingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98A68C22A1E7FB00AE4C15 /* ItemsSavingManager.swift */; };
 		2CA052D5226E770600FC48C6 /* ItemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CA052D3226E770600FC48C6 /* ItemModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +41,6 @@
 		2C4710692266A464008CA428 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
 		2C833DC422A08813004849F1 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		2C89EAF622A1886A0024B072 /* ShopService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
-		2C98A68C22A1E7FB00AE4C15 /* ItemsSavingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsSavingManager.swift; sourceTree = "<group>"; };
 		2CA052D4226E770600FC48C6 /* ItemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemModel.xcdatamodel; sourceTree = "<group>"; };
 		5343F2666846570B55618255 /* Pods-MealDealTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealDealTest.debug.xcconfig"; path = "Target Support Files/Pods-MealDealTest/Pods-MealDealTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E12777EC5A468084D4C8C163 /* Pods_MealDealTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealDealTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				2C0944432265DDFF0070CF6A /* AppDelegate.swift */,
-				2C98A68C22A1E7FB00AE4C15 /* ItemsSavingManager.swift */,
 				2C833DC322A079E9004849F1 /* Networking */,
 				2C47106022663799008CA428 /* Model */,
 				2C4710512265F80F008CA428 /* Сontrollers */,
@@ -278,7 +275,6 @@
 				2C0944462265DDFF0070CF6A /* ViewController.swift in Sources */,
 				2C0944442265DDFF0070CF6A /* AppDelegate.swift in Sources */,
 				2CA052D5226E770600FC48C6 /* ItemModel.xcdatamodeld in Sources */,
-				2C98A68D22A1E7FB00AE4C15 /* ItemsSavingManager.swift in Sources */,
 				2C47105B2265F988008CA428 /* PurchaseTableViewController.swift in Sources */,
 				2C47104F2265F7E7008CA428 /* MainTabBarController.swift in Sources */,
 				2C47106722667914008CA428 /* ItemCell.swift in Sources */,

@@ -20,7 +20,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         }
     }
     
-    
     var item: ItemMO!
     
     var fetchResultController: NSFetchedResultsController<ItemMO>!
@@ -32,6 +31,8 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchItems = items
         
         //MARK: - Fetch data from data store
         let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
@@ -51,15 +52,12 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             } catch {
                 print(error)
             }
-            
-            
         }
 
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        
         searchTableView.addGestureRecognizer(tapGR)
-        
         searchTableView.tableHeaderView = searchBar
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +73,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
             return searchItems.count
@@ -85,6 +82,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
         if searching {
             cell.itemDescriptionLabel.text = searchItems[indexPath.row].itemDescription
@@ -94,10 +92,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             cell.discountLabel.text = String(format:"%d", searchItems[indexPath.row].discount)
             
         } else {
-
-//            let item = items[indexPath.row]
-//            cell.configure(with: item)
-//            return cell
             
         cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
         cell.itemImage.kf.setImage(with: URL(string: items[indexPath.row].imageURL ?? ""))
@@ -109,7 +103,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
     
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let button : UIButton = sender as! UIButton
         let cell : UITableViewCell = button.superview?.superview as! UITableViewCell
@@ -119,7 +112,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         
         let purchaseVC = segue.destination as! PurchaseTableViewController
         purchaseVC.item = item
-
     }
  
     @objc private func keyboardWasHidden(notification: Notification) {
@@ -133,11 +125,12 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
     
     func searchBar (_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchItems = items.filter({$0.itemDescription!.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        searchItems = items.filter { item in
+            return item.itemDescription?.lowercased().contains(searchText.lowercased()) ?? true
+        }
+
         searching = true
         tableView.reloadData()
-        
-        //searchItems.removeAll()
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
