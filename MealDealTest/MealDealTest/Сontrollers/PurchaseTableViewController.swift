@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class PurchaseTableViewController: UITableViewController {
+    
+    static let shared = PurchaseTableViewController()
         
     @IBOutlet weak var purchaseTableView: UITableView!
     
@@ -39,9 +41,10 @@ class PurchaseTableViewController: UITableViewController {
     }
   
     // MARK: - Navigation
-    override func prepare(for addToCartSeague: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
  
     }
+    
     
     @IBAction func addToCart(segue: UIStoryboardSegue) {
         if let searchTableViewController = segue.source as? SearchTableViewController,
@@ -57,5 +60,7 @@ class PurchaseTableViewController: UITableViewController {
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
     }
+    
+    
 }
 
