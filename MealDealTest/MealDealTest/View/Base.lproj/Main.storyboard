@@ -268,7 +268,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <segue destination="S4Y-MN-QUX" kind="unwind" unwindAction="addToCartWithSegue:" id="g41-Q8-Sag"/>
+                                                <action selector="buttonHandler:" destination="S4Y-MN-QUX" eventType="touchUpInside" id="qHO-eC-R9O"/>
                                             </connections>
                                         </button>
                                     </subviews>

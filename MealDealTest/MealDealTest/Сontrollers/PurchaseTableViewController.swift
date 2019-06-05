@@ -31,6 +31,10 @@ class PurchaseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseCell.reuseId, for: indexPath) as? PurchaseCell else { fatalError("Cell cannot be dequeued")}
 
+        cell.indexPath = indexPath
+        cell.actionBlock = { (selectedIndexPath: IndexPath?) in
+            // тут у тебя уже есть selectedIndexPath нажатой ячейки
+        }
         cell.purchaseDescriptionLabel.text = items[indexPath.row].description
         cell.purchaseItemImage.image = UIImage(named: items[indexPath.row].imageURL!)
         cell.purchaseRetailerLabel.text = items[indexPath.row].retailer
@@ -39,6 +43,17 @@ class PurchaseTableViewController: UITableViewController {
 
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell: MyCell = tableView.dequeueReusableCell(withIdentifier: "identifier", for: indexPath) as? MyCell else {
+//            return UITableViewCell()
+//        }
+//        cell.indexPath = indexPath
+//        cell.actionBlock = { (selectedIndexPath: IndexPath?) in
+//            // тут у тебя уже есть selectedIndexPath нажатой ячейки
+//        }
+//        return cell
+//    }
   
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
