@@ -38,24 +38,24 @@ class PurchaseTableViewController: UITableViewController {
         return cell
     }
   
-    // MARK: - Navigation
-    override func prepare(for addToCartSeague: UIStoryboardSegue, sender: Any?) {
- 
-    }
-    
-    @IBAction func addToCart(segue: UIStoryboardSegue) {
-        if let searchTableViewController = segue.source as? SearchTableViewController,
-            let indexPath = searchTableViewController.tableView.indexPathForSelectedRow {
-            let newItem = searchTableViewController.items[indexPath.row]
-            
-            guard !items.contains(where: { item -> Bool in
-                return item.description == newItem.description
-            }) else { return }
-            items.append(newItem)
-            tableView.reloadData()
-            let newIndexPath = IndexPath(item: items.count-1, section: 0)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
-        }
-    }
+//    // MARK: - Navigation
+//    override func prepare(for addToCartSeague: UIStoryboardSegue, sender: Any?) {
+// 
+//    }
+//    
+//    @IBAction func addToCart(segue: UIStoryboardSegue) {
+//        if let searchTableViewController = segue.source as? SearchTableViewController,
+//            let indexPath = searchTableViewController.tableView.indexPathForSelectedRow {
+//            let newItem = searchTableViewController.items[indexPath.row]
+//            
+//            guard !items.contains(where: { item -> Bool in
+//                return item.description == newItem.description
+//            }) else { return }
+//            items.append(newItem)
+//            tableView.reloadData()
+//            let newIndexPath = IndexPath(item: items.count-1, section: 0)
+//            tableView.insertRows(at: [newIndexPath], with: .automatic)
+//        }
+//    }
 }
 

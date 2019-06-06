@@ -38,7 +38,6 @@ class ShopService {
                     managedItem.imageURL = plainItem.imageURL
                     managedItem.price = plainItem.price
                     managedItem.discount = plainItem.discount
-                    
                 }
                 AppDelegate.shared.saveContext()
                 

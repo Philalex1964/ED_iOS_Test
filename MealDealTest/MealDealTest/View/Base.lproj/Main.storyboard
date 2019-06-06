@@ -268,7 +268,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <segue destination="S4Y-MN-QUX" kind="unwind" identifier="addToCartSeague" unwindAction="addToCartWithSegue:" id="bYq-xv-5tF"/>
+                                                <action selector="buttonHandler" destination="elm-QD-o6B" eventType="touchUpInside" id="NLy-N9-kDA"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -322,7 +322,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXy-do-dqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="S4Y-MN-QUX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1907" y="-688"/>
         </scene>

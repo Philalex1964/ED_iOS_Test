@@ -91,6 +91,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             cell.priceLabel.text = "\(searchItems[indexPath.row].price)"
             cell.discountLabel.text = String(format:"%d", searchItems[indexPath.row].discount)
             
+            cell.indexPath = indexPath
+            cell.actionBlock = { (selectedIndexPath: IndexPath?) in
+                 self.addToCart()
+            }
+            
         } else {
             
         cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
@@ -98,6 +103,11 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         cell.retailerLabel.text = items[indexPath.row].retailer
         cell.priceLabel.text = "\(items[indexPath.row].price)"
         cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
+            
+            cell.indexPath = indexPath
+            cell.actionBlock = { (selectedIndexPath: IndexPath?) in
+                
+            }
         }
         return cell
     }
@@ -139,6 +149,19 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         }
         searching = false
         tableView.reloadData()
+    }
+    
+    public func addToCart() {
+        let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+        let context = appDelegate!.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
+
+        var itemAdded: ItemMO?
+        itemAdded =
+        
+        itemAdded?.addedItem = true
+        
+        AppDelegate.shared.saveContext()
     }
 }
 
