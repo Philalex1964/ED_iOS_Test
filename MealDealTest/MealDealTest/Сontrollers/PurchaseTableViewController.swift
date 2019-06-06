@@ -40,6 +40,7 @@ class PurchaseTableViewController: UITableViewController, NSFetchedResultsContro
                 try fetchResultController.performFetch()
                 if let fetchedObjects = fetchResultController.fetchedObjects {
                     items = fetchedObjects
+                    tableView.reloadData()
                 }
             } catch {
                 print(error)
@@ -60,28 +61,29 @@ class PurchaseTableViewController: UITableViewController, NSFetchedResultsContro
         cell.purchaseRetailerLabel.text = items[indexPath.row].retailer
         cell.purchasePriceLabel.text = "\(items[indexPath.row].price)"
         cell.purchaseDiscountLabel.text = String(format:"%d", items[indexPath.row].discount)
+        
+        cell.indexPath = indexPath
+        cell.actionBlock = { (selectedIndexPath: IndexPath?) in
+            self.deleteFromCart(selectedIndexPath: selectedIndexPath)
+        }
 
         return cell
     }
   
-//    // MARK: - Navigation
-//    override func prepare(for addToCartSeague: UIStoryboardSegue, sender: Any?) {
-// 
-//    }
-//    
-//    @IBAction func addToCart(segue: UIStoryboardSegue) {
-//        if let searchTableViewController = segue.source as? SearchTableViewController,
-//            let indexPath = searchTableViewController.tableView.indexPathForSelectedRow {
-//            let newItem = searchTableViewController.items[indexPath.row]
-//            
-//            guard !items.contains(where: { item -> Bool in
-//                return item.description == newItem.description
-//            }) else { return }
-//            items.append(newItem)
-//            tableView.reloadData()
-//            let newIndexPath = IndexPath(item: items.count-1, section: 0)
-//            tableView.insertRows(at: [newIndexPath], with: .automatic)
-//        }
-//    }
+    public func deleteFromCart(selectedIndexPath: IndexPath?) {
+        let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+        let context = appDelegate!.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
+        
+        var itemAdded: ItemMO?
+        
+        itemAdded = items[selectedIndexPath!.row]
+        
+        itemAdded?.addedItem = false
+        
+        AppDelegate.shared.saveContext()
+        viewWillAppear(true)
+      
+    }
 }
 
