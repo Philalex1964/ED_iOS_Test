@@ -29,7 +29,7 @@ class PurchaseTableViewController: UITableViewController, NSFetchedResultsContro
         let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "itemDescription", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        //fetchRequest.predicate = NSPredicate(format: "addedItem == true")
+        fetchRequest.predicate = NSPredicate(format: "addedItem == true")
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
             fetchResultController = NSFetchedResultsController(fetchRequest:
