@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
-class PurchaseTableViewController: UITableViewController {
+class PurchaseTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
         
     @IBOutlet weak var purchaseTableView: UITableView!
     
@@ -17,8 +18,33 @@ class PurchaseTableViewController: UITableViewController {
     
     public var items: [ItemMO] = []
     
+    var fetchResultController: NSFetchedResultsController<ItemMO>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //MARK: - Fetch data from data store
+        let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "itemDescription", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        //fetchRequest.predicate = NSPredicate(format: "addedItem == true")
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            let context = appDelegate.persistentContainer.viewContext
+            fetchResultController = NSFetchedResultsController(fetchRequest:
+                fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil,
+                              cacheName: nil)
+            fetchResultController.delegate = self
+            do {
+                try fetchResultController.performFetch()
+                if let fetchedObjects = fetchResultController.fetchedObjects {
+                    items = fetchedObjects
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -29,8 +55,8 @@ class PurchaseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseCell.reuseId, for: indexPath) as? PurchaseCell else { fatalError("Cell cannot be dequeued")}
 
-        cell.purchaseDescriptionLabel.text = items[indexPath.row].description
-        cell.purchaseItemImage.image = UIImage(named: items[indexPath.row].imageURL!)
+        cell.purchaseDescriptionLabel.text = items[indexPath.row].itemDescription
+        cell.purchaseItemImage.kf.setImage(with: URL(string: items[indexPath.row].imageURL ?? ""))
         cell.purchaseRetailerLabel.text = items[indexPath.row].retailer
         cell.purchasePriceLabel.text = "\(items[indexPath.row].price)"
         cell.purchaseDiscountLabel.text = String(format:"%d", items[indexPath.row].discount)
