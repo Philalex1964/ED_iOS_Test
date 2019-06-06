@@ -93,7 +93,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             
             cell.indexPath = indexPath
             cell.actionBlock = { (selectedIndexPath: IndexPath?) in
-                 self.addToCart()
+                self.addToCart(selectedIndexPath: selectedIndexPath)
             }
             
         } else {
@@ -106,7 +106,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             
             cell.indexPath = indexPath
             cell.actionBlock = { (selectedIndexPath: IndexPath?) in
-                
+                self.addToCart(selectedIndexPath: selectedIndexPath)
             }
         }
         return cell
@@ -151,17 +151,19 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         tableView.reloadData()
     }
     
-    public func addToCart() {
+    public func addToCart(selectedIndexPath: IndexPath?) {
         let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
         let context = appDelegate!.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
 
         var itemAdded: ItemMO?
-        itemAdded =
+        
+        itemAdded = items[selectedIndexPath!.row]
         
         itemAdded?.addedItem = true
-        
+    
         AppDelegate.shared.saveContext()
+        
     }
 }
 

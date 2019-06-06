@@ -18,6 +18,15 @@ class PurchaseCell: UITableViewCell {
     @IBOutlet weak var purchasePriceLabel: UILabel!
     @IBOutlet weak var purchaseDiscountLabel: UILabel!
     
+    var actionBlock: ((_ indexPath: IndexPath?) -> ())?
+    var indexPath: IndexPath?
+    
+    @IBAction func deleteFromCartButton() {
+        if let unwrappedBlock = actionBlock  {
+            unwrappedBlock(indexPath)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        

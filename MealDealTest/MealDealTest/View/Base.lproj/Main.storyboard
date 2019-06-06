@@ -98,6 +98,9 @@
                                                     <integer key="value" value="30"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="deleteFromCartButton" destination="fDa-fc-hSA" eventType="touchUpInside" id="B3L-tQ-IVs"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aew-DO-qOd">
                                             <rect key="frame" x="12" y="163" width="308" height="2"/>
