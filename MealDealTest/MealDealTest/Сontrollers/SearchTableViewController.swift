@@ -35,7 +35,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }()
     
     public var items: [ItemMO] = []
-
+    
     var searchItems = [ItemMO]()
     var searching = false
     
@@ -44,25 +44,6 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         
         searchItems = items
         
-        //MARK: - Fetch data from data store
-        let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "itemDescription", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-            let context = appDelegate.persistentContainer.viewContext
-            fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,                                                     managedObjectContext: context,                                                  sectionNameKeyPath: nil,
-                                                               cacheName: nil)
-            fetchResultsController?.delegate = self
-            do {
-                try fetchResultsController.performFetch()
-                if let fetchedObjects = fetchResultsController.fetchedObjects {
-                    items = fetchedObjects
-                }
-            } catch {
-                print(error)
-            }
-        }
-
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         
         searchTableView.addGestureRecognizer(tapGR)
@@ -80,7 +61,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
@@ -89,50 +70,24 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             return items.count
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseId, for: indexPath) as? ItemCell else { fatalError("Cell cannot be dequeued")}
-        if searching {
-            cell.itemDescriptionLabel.text = searchItems[indexPath.row].itemDescription
-            cell.itemImage.kf.setImage(with: URL(string: items[indexPath.row].imageURL ?? ""))
-            cell.retailerLabel.text = searchItems[indexPath.row].retailer
-            cell.priceLabel.text = "\(searchItems[indexPath.row].price)"
-            cell.discountLabel.text = String(format:"%d", searchItems[indexPath.row].discount)
-            
-            cell.indexPath = indexPath
-            cell.actionBlock = { (selectedIndexPath: IndexPath?) in
-                self.addToCart(selectedIndexPath: selectedIndexPath)
-            }
-            
-        } else {
-            
-        cell.itemDescriptionLabel.text = items[indexPath.row].itemDescription
-        cell.itemImage.kf.setImage(with: URL(string: items[indexPath.row].imageURL ?? ""))
-        cell.retailerLabel.text = items[indexPath.row].retailer
-        cell.priceLabel.text = "\(items[indexPath.row].price)"
-        cell.discountLabel.text = String(format:"%d", items[indexPath.row].discount)
-            
-            cell.indexPath = indexPath
-            cell.actionBlock = { (selectedIndexPath: IndexPath?) in
-                self.addToCart(selectedIndexPath: selectedIndexPath)
-            }
+        let item : ItemMO = searching ? searchItems[indexPath.row] : items[indexPath.row]
+        cell.itemDescriptionLabel.text = item.itemDescription
+        cell.itemImage.kf.setImage(with: URL(string: item.imageURL ?? ""))
+        cell.retailerLabel.text = item.retailer
+        cell.priceLabel.text = "\(item.price)"
+        cell.discountLabel.text = String(format:"%d", item.discount)
+        cell.indexPath = indexPath
+        cell.actionBlock = { (selectedIndexPath: IndexPath?) in
+            self.addToCart(selectedIndexPath: selectedIndexPath)
         }
         return cell
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let button : UIButton = sender as! UIButton
-        let cell : UITableViewCell = button.superview?.superview as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        guard let index = indexPath?.row else { return }
-        let item = items[index]
-        
-        let purchaseVC = segue.destination as! PurchaseTableViewController
-        purchaseVC.item = item
-    }
- 
+    // MARK: - Keyboard notifications
     @objc private func keyboardWasHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         
@@ -143,36 +98,50 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         searchTableView.endEditing(true)
     }
     
+    // MARK: - NSFetchedResultsControllerDelegate
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if let fetchedObjects = self.fetchResultsController?.fetchedObjects {
+            items = fetchedObjects
+        }
+        tableView.reloadData()
+    }
+    
+    // MARK: - UISearchBarDelegate    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
     func searchBar (_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchItems = items.filter { item in
             return item.itemDescription?.lowercased().contains(searchText.lowercased()) ?? true
         }
-
         searching = true
         tableView.reloadData()
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if let fetchedObjects = fetchResultsController.fetchedObjects {
-            items = fetchedObjects
-        }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.endEditing(true)
         tableView.reloadData()
     }
     
+    // MARK: - Private
     public func addToCart(selectedIndexPath: IndexPath?) {
-        let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
-        let context = appDelegate!.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
-
-        var itemAdded: ItemMO?
-        
-        itemAdded = items[selectedIndexPath!.row]
-        
-        itemAdded?.addedItem = true
-    
-        AppDelegate.shared.saveContext()
-        
+        if let index = selectedIndexPath?.row {
+            let item : ItemMO = searching ? searchItems[index] : items[index]
+            item.addedItem = true
+            let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+            appDelegate?.saveContext()
+        }
+    }
+    private func fetchData() {
+        do {
+            try self.fetchResultsController?.performFetch()
+        } catch {
+            print(error)
+        }
     }
 }
 
