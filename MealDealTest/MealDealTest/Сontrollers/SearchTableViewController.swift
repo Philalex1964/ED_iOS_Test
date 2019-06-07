@@ -52,6 +52,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.fetchData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -128,7 +129,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
     
     // MARK: - Private
-    public func addToCart(selectedIndexPath: IndexPath?) {
+    private func addToCart(selectedIndexPath: IndexPath?) {
         if let index = selectedIndexPath?.row {
             let item : ItemMO = searching ? searchItems[index] : items[index]
             item.addedItem = true
@@ -136,6 +137,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
             appDelegate?.saveContext()
         }
     }
+    
     private func fetchData() {
         do {
             try self.fetchResultsController?.performFetch()
