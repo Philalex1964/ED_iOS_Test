@@ -24,23 +24,38 @@ class ShopService {
             case .success(let value):
                 let json = JSON(value)
                 let items = json.arrayValue.map { Item($0) }
-                completion?(.success(items))
                 
+                let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+                let context = appDelegate!.persistentContainer.viewContext
+               
+                let oldIdentifiers = NSMutableArray()
+                if let allItems : [ItemMO] = self.allItemsIn(context: context) {
+                    for oldItem in allItems {
+                        if oldItem.addedItem {
+                            oldIdentifiers.add("\(oldItem.itemDescription ?? "")\(oldItem.retailer ?? "")")
+                        }
+                    }
+                }
+                
+                self.deleteItemsIn(context: context)
+                
+                let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
                 for plainItem: Item in items {
-                    let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
-                    let context = appDelegate!.persistentContainer.viewContext
-                    let entity = NSEntityDescription.entity(forEntityName: "Item", in: context)!
                     let managedItem = ItemMO(entity: entity,
-                                      insertInto: context)
+                                             insertInto: context)
                     
                     managedItem.itemDescription = plainItem.itemDescription
                     managedItem.retailer = plainItem.retailer
                     managedItem.imageURL = plainItem.imageURL
                     managedItem.price = plainItem.price
                     managedItem.discount = plainItem.discount
+                    let identifier = "\(plainItem.itemDescription)\(plainItem.retailer)"
+                    if oldIdentifiers.contains(identifier) {
+                        managedItem.addedItem = true
+                    }
                 }
                 AppDelegate.shared.saveContext()
-                
+                completion?(.success(items))
             case .failure(let error):
                 completion?(.failure(error))
                 print(error)
@@ -48,11 +63,27 @@ class ShopService {
         }
     }
     
-    public func addItem() {
-        
+    public func allItemsIn(context:NSManagedObjectContext) -> [ItemMO]? {
+        let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "itemDescription", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        let fetchResultsController = NSFetchedResultsController(fetchRequest:fetchRequest,
+                                                                managedObjectContext: context,
+                                                                sectionNameKeyPath: nil,
+                                                                cacheName: nil)
+        do {
+            try fetchResultsController.performFetch()
+        } catch {
+            print(error)
+        }
+        return fetchResultsController.fetchedObjects
     }
     
-    public func deleteItem() {
-        
+    public func deleteItemsIn(context : NSManagedObjectContext) {
+        if let fetchedObjects = self.allItemsIn(context: context) {
+            for item in fetchedObjects {
+                context.delete(item)
+            }
+        }
     }
 }

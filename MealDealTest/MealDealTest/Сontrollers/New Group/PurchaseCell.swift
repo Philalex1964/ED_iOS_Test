@@ -29,6 +29,5 @@ class PurchaseCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
     }
 }

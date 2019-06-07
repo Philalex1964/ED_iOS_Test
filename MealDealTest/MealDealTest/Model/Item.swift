@@ -15,8 +15,7 @@ class Item: Codable {
     let imageURL: String
     let price: Double
     let discount: Int16
-    var addedItem: Bool?
-    
+    var addedItem: Bool?    
     
     init(_ json: JSON) {
         self.itemDescription = json["description"].stringValue

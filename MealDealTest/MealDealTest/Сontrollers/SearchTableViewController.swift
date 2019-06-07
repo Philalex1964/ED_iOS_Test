@@ -20,9 +20,19 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         }
     }
     
-    var item: ItemMO!
-    
-    var fetchResultController: NSFetchedResultsController<ItemMO>!
+    lazy var fetchResultsController: NSFetchedResultsController<ItemMO>? = {
+        let fetchRequest: NSFetchRequest<ItemMO> = ItemMO.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "itemDescription", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        guard let appDelegate : AppDelegate = UIApplication.shared.delegate as? AppDelegate else {return nil}
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchResultsController = NSFetchedResultsController(fetchRequest:fetchRequest,
+                                                                managedObjectContext: context,
+                                                                sectionNameKeyPath: nil,
+                                                                cacheName: nil)
+        fetchResultsController.delegate = self
+        return fetchResultsController
+    }()
     
     public var items: [ItemMO] = []
 
@@ -40,12 +50,12 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         fetchRequest.sortDescriptors = [sortDescriptor]
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
-            fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest,                                                     managedObjectContext: context,                                                  sectionNameKeyPath: nil,
+            fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,                                                     managedObjectContext: context,                                                  sectionNameKeyPath: nil,
                                                                cacheName: nil)
-            fetchResultController.delegate = self
+            fetchResultsController?.delegate = self
             do {
-                try fetchResultController.performFetch()
-                if let fetchedObjects = fetchResultController.fetchedObjects {
+                try fetchResultsController.performFetch()
+                if let fetchedObjects = fetchResultsController.fetchedObjects {
                     items = fetchedObjects
                 }
             } catch {
@@ -143,7 +153,7 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if let fetchedObjects = fetchResultController.fetchedObjects {
+        if let fetchedObjects = fetchResultsController.fetchedObjects {
             items = fetchedObjects
         }
         searching = false
