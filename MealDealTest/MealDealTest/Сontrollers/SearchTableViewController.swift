@@ -40,9 +40,8 @@ class SearchTableViewController: UITableViewController, UISearchBarDelegate, NSF
         fetchRequest.sortDescriptors = [sortDescriptor]
         if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
             let context = appDelegate.persistentContainer.viewContext
-            fetchResultController = NSFetchedResultsController(fetchRequest:
-                fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil,
-                              cacheName: nil)
+            fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest,                                                     managedObjectContext: context,                                                  sectionNameKeyPath: nil,
+                                                               cacheName: nil)
             fetchResultController.delegate = self
             do {
                 try fetchResultController.performFetch()

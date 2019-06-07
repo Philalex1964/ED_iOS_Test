@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    static let shared = AppDelegate()
-    
+    static let shared = UIApplication.shared.delegate as! AppDelegate
+
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
         
